@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shop the latest products at patilbrothers, your trusted online store. Find quality items and exclusive offers today.">
+  <title>Patil Brothers</title>
+  <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgpUTPatz09ltu3QIvn5gjpNGtQsJ-v0GB_YBeFI0TzPWpS9XFshUrMztdcsLFndeS0D_exfvzASzDOy1HpGhRj5ebs9JgcMInLDO-o0df64SpDuCmpHLYvQuIjWO_z0pxieFQ_DWylZPdQbRFooorOYEmFSRLMtOUTzQkO7LMNeoFGGEvfTLKZdK3FGyBP/s320/Untitled-1.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="container">
+    <h1 class="logo">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgpUTPatz09ltu3QIvn5gjpNGtQsJ-v0GB_YBeFI0TzPWpS9XFshUrMztdcsLFndeS0D_exfvzASzDOy1HpGhRj5ebs9JgcMInLDO-o0df64SpDuCmpHLYvQuIjWO_z0pxieFQ_DWylZPdQbRFooorOYEmFSRLMtOUTzQkO7LMNeoFGGEvfTLKZdK3FGyBP/s320/Untitled-1.png" alt="MyShop Logo">
+    </h1>
+    <nav aria-label="Main Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="productpage.html">Products</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- Search Bar -->  
+    <div class="search-container">
+      <input type="text" placeholder="Search products..." aria-label="Search products" class="search-input">
+      <button type="button" class="search-button">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<br>
+<button class="custom-product-button" onclick="window.location.href='https://wa.me/9986291937?text=I%20would%20like%20to%20inquire%20about%20a%20custom%20product'">
+  CUSTOM PRODUCT
+</button>
+
+<br>
+<main>
+  <div class="product-container">
+    <!-- Products will be dynamically inserted here -->
+  </div>  
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <p>&copy; 2024 patil brothers. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="social-media">
+      <a href="https://www.facebook.com/p/Mc_creative_01-100063970238422/?_rdr" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+      <a href="https://www.instagram.com/mc_creative_01/?hl=en" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>      
+    </div>
+  </div>
+</footer>
+
+<script>
+  async function loadProducts() {
+    try {
+      const response = await fetch('products.json'); // Fetch the JSON file
+      if (!response.ok) throw new Error('Failed to load products');
+      
+      const products = await response.json();
+      const productContainer = document.querySelector('.product-container');
+      productContainer.innerHTML = ''; // Clear the product container before adding new products
+
+      // Add products to the container
+      products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.id = product.id;
+
+        productCard.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <h4>${product.name}</h4>
+          <p class="price">₹${Object.values(product.prices)[0]}.00</p>
+          <label for="size-${product.id}">Size:</label>
+          <select id="size-${product.id}" class="size-select">
+            ${Object.entries(product.prices)
+              .map(([size, price]) => `<option value="${size}" data-price="${price}">${size}</option>`)
+              .join('')}
+          </select>
+          <button class="cta buy-now" onclick="sendWhatsAppMessage('${product.name}', 'size-${product.id}')">Buy Now</button>
+        `;
+
+        productContainer.appendChild(productCard);
+      });
+
+      // Add search functionality after products are loaded
+      const searchInput = document.querySelector('.search-input');
+      const productCards = document.querySelectorAll('.product-card');
+
+      searchInput.addEventListener('input', function() {
+        const query = searchInput.value.toLowerCase();
+        productCards.forEach(function(card) {
+          const productName = card.querySelector('h4').textContent.toLowerCase();
+          if (productName.includes(query)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+
+      // Update price dynamically based on size selection
+      document.querySelectorAll('.size-select').forEach(select => {
+        select.addEventListener('change', function () {
+          const priceElement = select.closest('.product-card').querySelector('.price');
+          const selectedPrice = select.options[select.selectedIndex].getAttribute('data-price');
+          priceElement.textContent = `₹${selectedPrice}.00`;
+        });
+      });
+
+    } catch (error) {
+      console.error('Error loading products:', error);
+    }
+  }
+
+  function sendWhatsAppMessage(productName, sizeSelectId) {
+    const sizeSelect = document.getElementById(sizeSelectId);
+    const selectedSize = sizeSelect.value;
+    const selectedPrice = sizeSelect.options[sizeSelect.selectedIndex].getAttribute('data-price');
+    const whatsappNumber = "9986291937";
+    const message = `Hello, I would like to buy ${productName} of size ${selectedSize} for ₹${selectedPrice}.`;
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.location.href = whatsappURL;
+  }
+
+  document.addEventListener('DOMContentLoaded', loadProducts); // Load products on page load
+</script>
+
+</body>
+</html>

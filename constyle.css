@@ -1,0 +1,104 @@
+/* Contact Us Section */
+.contact-us {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .contact-us .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .contact-us h2 {
+    font-size: 2.5rem;
+    color: #264653;
+    margin-bottom: 20px;
+  }
+  
+  .contact-us p {
+    font-size: 1.2rem;
+    color: #2A2A2A;
+    margin-bottom: 40px;
+  }
+  
+  /* Contact Form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .contact-form .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-form label {
+    font-size: 1.2rem;
+    color: #264653;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #2A2A2A;
+  }
+  
+  .contact-form button.cta {
+    background-color: #E76F51;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact-form button.cta:hover {
+    background-color: #D35445;
+  }
+  
+  /* Contact Info */
+  .contact-info {
+    margin-top: 40px;
+  }
+  
+  .contact-info h3 {
+    font-size: 1.8rem;
+    color: #264653;
+    margin-bottom: 10px;
+  }
+  
+  .contact-info p {
+    font-size: 1.2rem;
+    color: #2A2A2A;
+  }
+  
+  .contact-info a {
+    color: #E76F51;
+    text-decoration: none;
+  }
+  
+  .contact-info a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .contact-us .container {
+      padding: 20px;
+    }
+  
+    .contact-form input,
+    .contact-form textarea {
+      font-size: 1rem;
+    }
+  }
+  

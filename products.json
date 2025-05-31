@@ -1,0 +1,119 @@
+[
+    {
+      "id": "product-1",
+      "name": "Ganesh Ji",
+      "image": "https://www.shutterstock.com/shutterstock/photos/1757753519/display_1500/stock-photo-lord-ganesha-with-colorful-background-wallpaper-god-ganesha-poster-design-for-wallpaper-1757753519.jpg",
+      "prices": {
+        "8x12": 1600,
+        "12x18": 2000,
+        "18x24": 2400,
+        "24x24": 2800,
+        "24x36": 3200,
+        "24x48": 3600
+      }
+    },
+    {
+      "id": "product-2",
+      "name": "Durga",
+      "image": "https://www.shutterstock.com/shutterstock/photos/1857132805/display_1500/stock-photo-durga-mata-with-colorful-background-digital-wall-poster-1857132805.jpg",
+      "prices": {
+        "8x12": 1600,
+        "12x18": 2000,
+        "18x24": 2400,
+        "24x24": 2800,
+        "24x36": 3200,
+        "24x48": 3600
+      }
+    },
+    {
+      "id": "product-3",
+      "name": "Shiv Parivar",
+      "image": "https://www.shutterstock.com/shutterstock/photos/1757862170/display_1500/stock-photo-lord-shiva-with-colorful-background-wallpaper-god-shiv-pariwar-poster-design-for-wallpaper-1757862170.jpg",
+      "prices": {
+        "8x12": 1400,
+        "12x18": 1800,
+        "18x24": 2200,
+        "24x24": 2600,
+        "24x36": 3000,
+        "24x48": 3400
+      }
+    },
+    {
+        "id": "product-4",
+        "name": "Ganesh Ji",
+        "image": "https://www.shutterstock.com/shutterstock/photos/1757753519/display_1500/stock-photo-lord-ganesha-with-colorful-background-wallpaper-god-ganesha-poster-design-for-wallpaper-1757753519.jpg",
+        "prices": {
+          "8x12": 1600,
+          "12x18": 2000,
+          "18x24": 2400,
+          "24x24": 2800,
+          "24x36": 3200,
+          "24x48": 3600
+        }
+      },
+      {
+        "id": "product-5",
+        "name": "Durga",
+        "image": "https://www.shutterstock.com/shutterstock/photos/1857132805/display_1500/stock-photo-durga-mata-with-colorful-background-digital-wall-poster-1857132805.jpg",
+        "prices": {
+          "8x12": 1600,
+          "12x18": 2000,
+          "18x24": 2400,
+          "24x24": 2800,
+          "24x36": 3200,
+          "24x48": 3600
+        }
+      },
+      {
+        "id": "product-6",
+        "name": "Shiv Parivar",
+        "image": "https://www.shutterstock.com/shutterstock/photos/1757862170/display_1500/stock-photo-lord-shiva-with-colorful-background-wallpaper-god-shiv-pariwar-poster-design-for-wallpaper-1757862170.jpg",
+        "prices": {
+          "8x12": 1400,
+          "12x18": 1800,
+          "18x24": 2200,
+          "24x24": 2600,
+          "24x36": 3000,
+          "24x48": 3400
+        }
+      },
+      {
+        "id": "product-7",
+        "name": "Ganesh Ji",
+        "image": "https://www.shutterstock.com/shutterstock/photos/1757753519/display_1500/stock-photo-lord-ganesha-with-colorful-background-wallpaper-god-ganesha-poster-design-for-wallpaper-1757753519.jpg",
+        "prices": {
+          "8x12": 1600,
+          "12x18": 2000,
+          "18x24": 2400,
+          "24x24": 2800,
+          "24x36": 3200,
+          "24x48": 3600
+        }
+      },
+      {
+        "id": "product-8",
+        "name": "Durga",
+        "image": "https://www.shutterstock.com/shutterstock/photos/1857132805/display_1500/stock-photo-durga-mata-with-colorful-background-digital-wall-poster-1857132805.jpg",
+        "prices": {
+          "8x12": 1600,
+          "12x18": 2000,
+          "18x24": 2400,
+          "24x24": 2800,
+          "24x36": 3200,
+          "24x48": 3600
+        }
+      },
+      {
+        "id": "p1212",
+        "name": "Shiv Parivar",
+        "image": "https://www.shutterstock.com/shutterstock/photos/1757862170/display_1500/stock-photo-lord-shiva-with-colorful-background-wallpaper-god-shiv-pariwar-poster-design-for-wallpaper-1757862170.jpg",
+        "prices": {
+          "8x12": 1400,
+          "12x18": 1800,
+          "18x24": 2200,
+          "24x24": 2600,
+          "24x36": 3000,
+          "24x48": 3400
+        }
+      }
+  ]
