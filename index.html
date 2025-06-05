@@ -140,7 +140,7 @@
     const extraPrice = parseInt(typeSelect.options[typeSelect.selectedIndex].getAttribute('data-extra'));
     const totalPrice = basePrice + extraPrice;
 
-    const whatsappNumber = "9986291937";
+    const whatsappNumber = "9148500589";
     const message = `Hello, I would like to buy ${productName} of size ${selectedSize} and type ${selectedType} for ₹${totalPrice}.`;
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.location.href = whatsappURL;
