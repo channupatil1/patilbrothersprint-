@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Shop the latest products at patilbrothers, your trusted online store. Find quality items and exclusive offers today.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Shop the latest products at patilbrothers, your trusted online store. Find quality items and exclusive offers today."/>
   <title>Patil Brothers</title>
   <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgpUTPatz09ltu3QIvn5gjpNGtQsJ-v0GB_YBeFI0TzPWpS9XFshUrMztdcsLFndeS0D_exfvzASzDOy1HpGhRj5ebs9JgcMInLDO-o0df64SpDuCmpHLYvQuIjWO_z0pxieFQ_DWylZPdQbRFooorOYEmFSRLMtOUTzQkO7LMNeoFGGEvfTLKZdK3FGyBP/s320/Untitled-1.png" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
 <header>
   <div class="container">
     <h1 class="logo">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgpUTPatz09ltu3QIvn5gjpNGtQsJ-v0GB_YBeFI0TzPWpS9XFshUrMztdcsLFndeS0D_exfvzASzDOy1HpGhRj5ebs9JgcMInLDO-o0df64SpDuCmpHLYvQuIjWO_z0pxieFQ_DWylZPdQbRFooorOYEmFSRLMtOUTzQkO7LMNeoFGGEvfTLKZdK3FGyBP/s320/Untitled-1.png" alt="MyShop Logo">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgpUTPatz09ltu3QIvn5gjpNGtQsJ-v0GB_YBeFI0TzPWpS9XFshUrMztdcsLFndeS0D_exfvzASzDOy1HpGhRj5ebs9JgcMInLDO-o0df64SpDuCmpHLYvQuIjWO_z0pxieFQ_DWylZPdQbRFooorOYEmFSRLMtOUTzQkO7LMNeoFGGEvfTLKZdK3FGyBP/s320/Untitled-1.png" alt="Logo">
     </h1>
     <nav aria-label="Main Navigation">
       <ul>
@@ -25,7 +25,6 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-    <!-- Search Bar -->  
     <div class="search-container">
       <input type="text" placeholder="Search products..." aria-label="Search products" class="search-input">
       <button type="button" class="search-button">
@@ -44,7 +43,7 @@
 <main>
   <div class="product-container">
     <!-- Products will be dynamically inserted here -->
-  </div>  
+  </div>
 </main>
 
 <!-- Footer -->
@@ -59,7 +58,7 @@
     <div class="social-media">
       <a href="https://www.facebook.com/p/Mc_creative_01-100063970238422/?_rdr" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
       <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-      <a href="https://www.instagram.com/mc_creative_01/?hl=en" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>      
+      <a href="https://www.instagram.com/mc_creative_01/?hl=en" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
     </div>
   </div>
 </footer>
@@ -67,14 +66,13 @@
 <script>
   async function loadProducts() {
     try {
-      const response = await fetch('products.json'); // Fetch the JSON file
+      const response = await fetch('products.json');
       if (!response.ok) throw new Error('Failed to load products');
-      
+
       const products = await response.json();
       const productContainer = document.querySelector('.product-container');
-      productContainer.innerHTML = ''; // Clear the product container before adding new products
+      productContainer.innerHTML = '';
 
-      // Add products to the container
       products.forEach(product => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
@@ -83,41 +81,48 @@
         productCard.innerHTML = `
           <img src="${product.image}" alt="${product.name}">
           <h4>${product.name}</h4>
-          <p class="price">₹${Object.values(product.prices)[0]}.00</p>
+          <p class="price">₹${Object.values(product.prices)[0] + (product.types?.Tile || 0)}.00</p>
+
           <label for="size-${product.id}">Size:</label>
           <select id="size-${product.id}" class="size-select">
             ${Object.entries(product.prices)
               .map(([size, price]) => `<option value="${size}" data-price="${price}">${size}</option>`)
               .join('')}
           </select>
-          <button class="cta buy-now" onclick="sendWhatsAppMessage('${product.name}', 'size-${product.id}')">Buy Now</button>
+
+          <label for="type-${product.id}">Type:</label>
+          <select id="type-${product.id}" class="type-select">
+            ${Object.entries(product.types || { Tile: 0, Frame: -1000 })
+              .map(([type, extra]) => `<option value="${type}" data-extra="${extra}">${type}</option>`)
+              .join('')}
+          </select>
+
+          <button class="cta buy-now" onclick="sendWhatsAppMessage('${product.name}', '${product.id}')">Buy Now</button>
         `;
 
         productContainer.appendChild(productCard);
       });
 
-      // Add search functionality after products are loaded
       const searchInput = document.querySelector('.search-input');
       const productCards = document.querySelectorAll('.product-card');
 
-      searchInput.addEventListener('input', function() {
+      searchInput.addEventListener('input', function () {
         const query = searchInput.value.toLowerCase();
-        productCards.forEach(function(card) {
+        productCards.forEach(function (card) {
           const productName = card.querySelector('h4').textContent.toLowerCase();
-          if (productName.includes(query)) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
+          card.style.display = productName.includes(query) ? 'block' : 'none';
         });
       });
 
-      // Update price dynamically based on size selection
-      document.querySelectorAll('.size-select').forEach(select => {
+      document.querySelectorAll('.size-select, .type-select').forEach(select => {
         select.addEventListener('change', function () {
-          const priceElement = select.closest('.product-card').querySelector('.price');
-          const selectedPrice = select.options[select.selectedIndex].getAttribute('data-price');
-          priceElement.textContent = `₹${selectedPrice}.00`;
+          const card = select.closest('.product-card');
+          const sizeSelect = card.querySelector('.size-select');
+          const typeSelect = card.querySelector('.type-select');
+          const basePrice = parseInt(sizeSelect.options[sizeSelect.selectedIndex].getAttribute('data-price'));
+          const extraPrice = parseInt(typeSelect.options[typeSelect.selectedIndex].getAttribute('data-extra'));
+          const finalPrice = basePrice + extraPrice;
+          card.querySelector('.price').textContent = `₹${finalPrice}.00`;
         });
       });
 
@@ -126,17 +131,22 @@
     }
   }
 
-  function sendWhatsAppMessage(productName, sizeSelectId) {
-    const sizeSelect = document.getElementById(sizeSelectId);
+  function sendWhatsAppMessage(productName, productId) {
+    const sizeSelect = document.getElementById(`size-${productId}`);
+    const typeSelect = document.getElementById(`type-${productId}`);
     const selectedSize = sizeSelect.value;
-    const selectedPrice = sizeSelect.options[sizeSelect.selectedIndex].getAttribute('data-price');
+    const selectedType = typeSelect.value;
+    const basePrice = parseInt(sizeSelect.options[sizeSelect.selectedIndex].getAttribute('data-price'));
+    const extraPrice = parseInt(typeSelect.options[typeSelect.selectedIndex].getAttribute('data-extra'));
+    const totalPrice = basePrice + extraPrice;
+
     const whatsappNumber = "9986291937";
-    const message = `Hello, I would like to buy ${productName} of size ${selectedSize} for ₹${selectedPrice}.`;
+    const message = `Hello, I would like to buy ${productName} of size ${selectedSize} and type ${selectedType} for ₹${totalPrice}.`;
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.location.href = whatsappURL;
   }
 
-  document.addEventListener('DOMContentLoaded', loadProducts); // Load products on page load
+  document.addEventListener('DOMContentLoaded', loadProducts);
 </script>
 
 </body>
